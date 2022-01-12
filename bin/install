@@ -1,7 +1,17 @@
 #!/usr/bin/env bash
+set -eo pipefail
 
-set -e
-set -o pipefail
+ASDF_INSTALL_TYPE=${ASDF_INSTALL_TYPE:-version}
+
+test -n "$ASDF_INSTALL_VERSION" || {
+  echo 'Missing ASDF_INSTALL_VERSION'
+  exit 1
+}
+
+test -n "$ASDF_INSTALL_PATH" || {
+  echo 'Missing ASDF_INSTALL_PATH'
+  exit 1
+}
 
 install_tool() {
   #local install_type=$1
