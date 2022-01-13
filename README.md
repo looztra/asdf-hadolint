@@ -1,6 +1,6 @@
 <div align="center">
 
-# asdf-hadolint [![Build](https://github.com/looztra/asdf-hadolint/actions/workflows/build.yml/badge.svg)](https://github.com/looztra/asdf-hadolint/actions/workflows/build.yml) [![Lint](https://github.com/looztra/asdf-hadolint/actions/workflows/lint.yml/badge.svg)](https://github.com/looztra/asdf-hadolint/actions/workflows/lint.yml)
+# asdf-hadolint [![Build](https://github.com/crazy-matt/asdf-hadolint/actions/workflows/build.yml/badge.svg)](https://github.com/crazy-matt/asdf-hadolint/actions/workflows/build.yml) [![Lint](https://github.com/crazy-matt/asdf-hadolint/actions/workflows/lint.yml/badge.svg)](https://github.com/crazy-matt/asdf-hadolint/actions/workflows/lint.yml)
 
 [hadolint](https://github.com/hadolint/hadolint#readme) plugin for the [asdf version manager](https://asdf-vm.com).
 
@@ -21,7 +21,7 @@
 
 # Build History
 
-[![Build history](https://buildstats.info/github/chart/looztra/asdf-hadolint?branch=main)](https://github.com/looztra/asdf-hadolint/actions)
+[![Build history](https://buildstats.info/github/chart/crazy-matt/asdf-hadolint?branch=master)](https://github.com/crazy-matt/asdf-hadolint/actions)
 
 # Dependencies
 
@@ -32,7 +32,7 @@
 Plugin:
 
 ```shell
-asdf plugin add hadolint https://github.com/looztra/asdf-hadolint.git
+asdf plugin add hadolint https://github.com/crazy-matt/asdf-hadolint.git
 ```
 
 hadolint:
@@ -58,7 +58,7 @@ install & manage versions.
 
 Contributions of any kind welcome! See the [contributing guide](contributing.md).
 
-[Thanks goes to these contributors](https://github.com/looztra/asdf-hadolint/graphs/contributors)!
+[Thanks goes to these contributors](https://github.com/crazy-matt/asdf-hadolint/graphs/contributors)!
 
 ## Tooling Requirements
 
