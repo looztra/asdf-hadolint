@@ -1,0 +1,66 @@
+# https://taskfile.dev
+# A modern replacement of Makefile
+version: '3'
+
+vars:
+  REPO_ABS_ROOT_PATH:
+    sh: git rev-parse --show-toplevel
+
+tasks:
+  default:
+    cmds:
+    - task --list
+    silent: true
+
+  security:
+    desc: Run all security scanners
+    cmds:
+    - task: security:filesystem:grype
+    silent: true
+
+  security:filesystem:grype:
+    desc: Run Grype (Filesystem Vulnerability Scanner)
+    cmds:
+    - plugin_name="grype"; asdf plugin add "${plugin_name}" || true; asdf install "${plugin_name}" $(asdf current "${plugin_name}" | tr -s ' ' | cut -d' ' -f2)
+    - grype "dir:$(git rev-parse --show-toplevel)" --output table --config "$(git rev-parse --show-toplevel)/.security/grype.yaml"
+    silent: true
+
+  lint:
+    desc: Run all linters
+    cmds:
+    - task: lint:markdown:markdownlint
+    - task: lint:yaml:yamllint
+    - task: lint:shellscript:shellcheck
+    silent: true
+
+  lint:markdown:markdownlint:
+    desc: Lint Markdown files
+    cmds:
+    - docker run --rm --volume "{{.REPO_ABS_ROOT_PATH}}:/work" tmknom/markdownlint:latest --config .linters/markdown-linter.yml --ignore CHANGELOG.md .
+    silent: true
+
+  lint:yaml:yamllint:
+    desc: Lint YAML files
+    cmds:
+    - docker run --rm --volume "{{.REPO_ABS_ROOT_PATH}}:/work" tmknom/yamllint:latest --config-file .linters/yaml-linter.yml .
+    silent: true
+
+  lint:shellscript:shellcheck:
+    desc: Lint shell scripts
+    cmds:
+    - plugin_name="shellcheck"; asdf plugin add "${plugin_name}" || true; asdf install "${plugin_name}" $(asdf current "${plugin_name}" | tr -s ' ' | cut -d' ' -f2)
+    - shellcheck --check-sourced --color=auto --format=tty --enable=all --source-path=/dev/null --shell=bash --severity=style {{.REPO_ABS_ROOT_PATH}}/bin/*
+    silent: true
+
+  format:
+    desc: Run all formatters
+    cmds:
+    - task: format:shellscript:shfmt
+    silent: true
+
+  format:shellscript:shfmt:
+    desc: Lint shell scripts
+    cmds:
+    - plugin_name="shfmt"; asdf plugin add "${plugin_name}" || true; asdf install "${plugin_name}" $(asdf current "${plugin_name}" | tr -s ' ' | cut -d' ' -f2)
+    - shfmt -ln bash -ci -i 2 -d "{{.REPO_ABS_ROOT_PATH}}/bin"
+    silent: true
