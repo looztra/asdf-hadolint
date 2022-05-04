@@ -44,7 +44,17 @@ get_binary_path_in_archive() {
 }
 
 get_platform() {
-  echo "$(uname)-x86_64"
+  local this_platform
+  this_platform="$(uname)-$(uname -m)"
+
+  case "$this_platform" in
+    Linux-aarch64|Linux-arm64)
+      echo "Linux-arm64"
+      ;;
+    *)
+      echo "$(uname)-x86_64"
+      ;;
+  esac
 }
 
 get_filename() {
