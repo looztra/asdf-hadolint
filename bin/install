@@ -64,7 +64,7 @@ get_download_url() {
   local filename
   filename="$(get_filename "$version" "$platform" "$binary_name")"
 
-  echo "https://github.com/hadolint/hadolint/releases/download/${version}/${filename}"
+  echo "https://github.com/hadolint/hadolint/releases/download/v${version}/${filename}"
 }
 
 tmp_download_dir="$(mktemp -d -t 'asdf_XXXXXXXX')"
