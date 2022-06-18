@@ -1,0 +1,4 @@
+grype 0.28.0
+shellcheck 0.8.0
+shfmt 3.4.2
+task 3.9.2
