@@ -22,7 +22,7 @@ jobs:
         uses: asdf-vm/actions/install@v1
 
       - name: 'Install Task'
-        uses: arduino/setup-task@v1.0.1
+        uses: arduino/setup-task@1.0.2
         with:
           version: ${{ steps.vars.outputs.task_version }}
 
