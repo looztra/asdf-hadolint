@@ -19,7 +19,7 @@ jobs:
           echo "::set-output name=task_version::$(cat ${{ github.workspace }}/.tool-versions | grep -w task | cut -d ' ' -f2)"
 
       - name: 'Install asdf dependencies'
-        uses: asdf-vm/actions/install@v1
+        uses: asdf-vm/actions/install@v2
 
       - name: 'Install Task'
         uses: arduino/setup-task@v1.0.1
